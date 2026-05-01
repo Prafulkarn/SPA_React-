@@ -5,7 +5,7 @@ A small React application scaffolded with Vite. This project demonstrates a simp
 ## Summary
 
 - Framework: React + Vite
-- Language: JavaScript (JSX)
+- Language: JavaScript in JSX.
 - Purpose: Educational/demo app with small interactive components and page routing
 
 ## Key Features
@@ -59,7 +59,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## React_Compiler
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
