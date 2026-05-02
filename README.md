@@ -1,4 +1,4 @@
-# my-first-app
+# Reactapp
 
 A small React application scaffolded with Vite. This project demonstrates a simple component-driven UI and routing, and is intended for learning and lab exercises.
 
