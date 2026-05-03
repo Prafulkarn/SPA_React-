@@ -20,6 +20,9 @@ function App() {
           <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active-link' : '')}>
             Contact
           </NavLink>
+          <NavLink to="/login" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+            Login
+          </NavLink>
         </nav>
       </header>
 
