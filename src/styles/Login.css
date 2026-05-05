@@ -97,6 +97,16 @@
   border-left: 4px solid #3c3;
 }
 
+.notice-message {
+  background-color: #eef4ff;
+  color: #1f4267;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  border-left: 4px solid #1f4267;
+}
+
 .login-footer {
   text-align: center;
   margin-top: 20px;
@@ -117,6 +127,32 @@
 .login-footer a:hover {
   color: #764ba2;
   text-decoration: underline;
+}
+
+.users-page {
+  overflow: hidden;
+}
+
+.users-table-wrap {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  text-align: left;
+  border-bottom: 1px solid #d6e1ea;
+  padding: 0.65rem;
+}
+
+.users-table th {
+  background: #eff5fb;
+  color: #16324f;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 600px) {
