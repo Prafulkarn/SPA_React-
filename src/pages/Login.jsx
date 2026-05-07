@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import showIcon from '../assets/show.png'
+import hiddenIcon from '../assets/hidden.png'
 import '../styles/Login.css'
 
 function Login({ onLogin }) {
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [info, setInfo] = useState('Use your username and password to login.')
 
@@ -29,6 +32,8 @@ function Login({ onLogin }) {
     setInfo(result.isAdmin ? 'Admin login successful. Passwords are visible on Users page.' : '')
     navigate('/')
   }
+
+  const toggleShow = () => setShowPassword((s) => !s)
 
   return (
     <div className="login-container">
@@ -54,14 +59,29 @@ function Login({ onLogin }) {
 
           <div className="form-group">
             <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              autoComplete="current-password"
-            />
+            <div className="password-row">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                onClick={toggleShow}
+                className="icon-button"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                <img
+                  src={showPassword ? hiddenIcon : showIcon}
+                  alt={showPassword ? 'Hide' : 'Show'}
+                  width="22"
+                  height="22"
+                />
+              </button>
+            </div>
           </div>
 
           <button type="submit" className="login-button">
