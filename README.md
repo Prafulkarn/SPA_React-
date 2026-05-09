@@ -11,7 +11,7 @@ A small React application scaffolded with Vite. This project demonstrates a simp
 ## Key Features
 
 - Toggle a bulb on/off (`BulbToggler`)
-- Registration and Login 
+- Registration and Login (User/admin)
 - Simple counter panel (`CounterPanel`)
 - Manage a list of items with add/remove (`ItemListManager`, `ItemListView`)
 - Password visibility toggle (`passwordToggler`)
