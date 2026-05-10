@@ -6,7 +6,7 @@ A small React application scaffolded with Vite. This project demonstrates a simp
 
 - Framework: React + Vite
 - Language: JavaScript in JSX.
-- Purpose: Educational/demo app with small interactive components and page routing
+- Purpose: Educational/demo app with small interactive components and page routing all in one 
 
 ## Key Features
 
