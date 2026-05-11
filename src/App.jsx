@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
+import { Navigate, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -78,6 +78,7 @@ function ProtectedRoute({ isLoggedIn, children }) {
 function App() {
   const [users, setUsers] = useState(() => loadUsers())
   const [currentUser, setCurrentUser] = useState(null)
+  const location = useLocation()
 
   useEffect(() => {
     localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users))
@@ -153,7 +154,8 @@ function App() {
         </nav>
       </header>
 
-      <Routes>
+      <div key={location.pathname} className="page-transition">
+        <Routes location={location}>
         <Route
           path="/"
           element={
@@ -210,8 +212,9 @@ function App() {
             )
           }
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
     </div>
   )
 }
