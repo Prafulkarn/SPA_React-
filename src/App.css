@@ -136,6 +136,18 @@
   font-weight: 700;
 }
 
+.item-form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.item-form input {
+  flex: 1;
+  min-width: 0;
+}
+
 .item-list {
   margin: 0.8rem 0 0;
   padding: 0;
