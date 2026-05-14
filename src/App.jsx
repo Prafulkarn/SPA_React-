@@ -7,6 +7,7 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import UsersList from './pages/UsersList'
+import SplashScreen from './components/SplashScreen'
 
 const USERS_STORAGE_KEY = 'lab4_registered_users'
 
@@ -78,6 +79,7 @@ function ProtectedRoute({ isLoggedIn, children }) {
 function App() {
   const [users, setUsers] = useState(() => loadUsers())
   const [currentUser, setCurrentUser] = useState(null)
+  const [showSplash, setShowSplash] = useState(true)
   const location = useLocation()
 
   useEffect(() => {
@@ -118,104 +120,109 @@ function App() {
   }
 
   return (
-    <div className="app-shell">
-      <header className="topbar">
-        <h2>My First React Lab</h2>
-        <nav className="nav-menu" aria-label="Main navigation">
-          {!isLoggedIn && (
-            <>
-              <NavLink to="/register" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-                Register
-              </NavLink>
-              <NavLink to="/login" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-                Login
-              </NavLink>
-            </>
-          )}
-          {isLoggedIn && (
-            <>
-              <NavLink to="/" end className={({ isActive }) => (isActive ? 'active-link' : '')}>
-                Home
-              </NavLink>
-              <NavLink to="/about" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-                About
-              </NavLink>
-              <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-                Contact
-              </NavLink>
-              <NavLink to="/users" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-                Users
-              </NavLink>
-              <button type="button" className="logout-button" onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-          )}
-        </nav>
-      </header>
+    <>
+      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
+      {!showSplash && (
+        <div className="app-shell">
+          <header className="topbar">
+            <h2>My First React Lab</h2>
+            <nav className="nav-menu" aria-label="Main navigation">
+              {!isLoggedIn && (
+                <>
+                  <NavLink to="/register" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+                    Register
+                  </NavLink>
+                  <NavLink to="/login" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+                    Login
+                  </NavLink>
+                </>
+              )}
+              {isLoggedIn && (
+                <>
+                  <NavLink to="/" end className={({ isActive }) => (isActive ? 'active-link' : '')}>
+                    Home
+                  </NavLink>
+                  <NavLink to="/about" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+                    About
+                  </NavLink>
+                  <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+                    Contact
+                  </NavLink>
+                  <NavLink to="/users" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+                    Users
+                  </NavLink>
+                  <button type="button" className="logout-button" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </>
+              )}
+            </nav>
+          </header>
 
-      <div key={location.pathname} className="page-transition">
-        <Routes location={location}>
-        <Route
-          path="/"
-          element={
-            isLoggedIn ? <Home /> : <Navigate to={hasRegisteredUsers ? '/login' : '/register'} replace />
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <About />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Contact />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <UsersList users={users} showPasswords={isAdmin} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            isLoggedIn ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Register
-                onRegister={handleRegister}
-                existingEmails={userEmails}
-                existingUsernames={usernames}
-              />
-            )
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            isLoggedIn ? (
-              <Navigate to="/" replace />
-            ) : hasRegisteredUsers ? (
-              <Login onLogin={handleLogin} />
-            ) : (
-              <Navigate to="/register" replace />
-            )
-          }
-        />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
-    </div>
+          <div key={location.pathname} className="page-transition">
+            <Routes location={location}>
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? <Home /> : <Navigate to={hasRegisteredUsers ? '/login' : '/register'} replace />
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <About />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Contact />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users"
+              element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <UsersList users={users} showPasswords={isAdmin} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  <Register
+                    onRegister={handleRegister}
+                    existingEmails={userEmails}
+                    existingUsernames={usernames}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/" replace />
+                ) : hasRegisteredUsers ? (
+                  <Login onLogin={handleLogin} />
+                ) : (
+                  <Navigate to="/register" replace />
+                )
+              }
+            />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
